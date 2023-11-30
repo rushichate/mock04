@@ -13,9 +13,19 @@ recipeRouter.post("/add",async(req,res)=>{
     }
 })
 
-recipeRouter.get("/",async(eq,res)=>{
+recipeRouter.get("/data",async(req,res)=>{
     try{
-        const recipes = await RecipeModel.find()
+        const {category , sort} = req.query
+        let query = {}
+        if(category){
+            query.category = category
+        }
+        let sortOption = {}
+        if(sort){
+            const sortOrder = sort === 'asc' ? 1 : -1;
+            sortOption = {price:sortOrder}
+        }
+        const recipes = await RecipeModel.find(query).sort(sortOption)
         res.status(200).json(recipes)
 
     }catch(error){

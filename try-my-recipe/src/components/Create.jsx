@@ -4,7 +4,7 @@ import axios from 'axios'
 function Create() {
  const [recipeData, setRecipeData] = useState({
     name:"",
-    catagory:"",
+    category:"",
     ingredients:"",
     instructions:"",
     price:0
@@ -22,6 +22,7 @@ function Create() {
    try{
      await axios.post("http://localhost:8000/recipes/add",recipeData)
      alert("Recipe Created")
+     window.location.reload();
    }catch(error){
     console.error(error)
    }
@@ -35,10 +36,10 @@ function Create() {
             <input type="text" name='name' value={recipeData.name} onChange={handleChange} />
             </label>
 
-            <label htmlFor="">
-                Catagory:
-                <select name="catagory" id="" value={recipeData.catagory} onChange={handleChange}>
-                    <option value="">Select Cataory</option>
+            <label htmlFor="category">
+                Category:
+                <select name="category" id="" value={recipeData.category} onChange={handleChange}>
+                    <option value="">Select Category</option>
                     <option value="Starters">Starters</option>
                     <option value="Main Course">Main Course</option>
                     <option value="Desserts">Desserts</option>

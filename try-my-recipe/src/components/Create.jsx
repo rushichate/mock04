@@ -21,6 +21,7 @@ function Create() {
     e.preventDefault()
    try{
      await axios.post("http://localhost:8000/recipes/add",recipeData)
+     alert("Recipe Created")
    }catch(error){
     console.error(error)
    }
